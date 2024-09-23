@@ -1,0 +1,1 @@
+2; Nome: cla, Genero: codigo, Plataforma: pc, Ano: 201, Desenvolvedor: valve23;
