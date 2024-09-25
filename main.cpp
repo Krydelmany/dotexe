@@ -10,6 +10,8 @@ int main() {
     int id = 1;  // Contador de jogos, você pode carregar isso de um arquivo para persistência.
     std::string nomeJogo, generoJogo, plataforma, anoLancamento, desenvolvedor;
 
+    ExibirLogo();
+
     while (true) {
         // Menu de opções
         std::cout << "\n===== Gerenciador de Jogos =====" << std::endl;

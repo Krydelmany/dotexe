@@ -1,5 +1,10 @@
 #include "bibliotecas.h"
 
-void ExibirLogo() {
-    std::cout << "Logo test" << std::endl;
+void ExibirLogo() {                                       
+std::cout << " #####   ####  #####     ###### #    # ###### " << std::endl;
+std::cout << " #    # #    #   #       #       #  #  #      " << std::endl;
+std::cout << " #    # #    #   #       #####    ##   #####  " << std::endl;
+std::cout << " #    # #    #   #   ### #        ##   #      " << std::endl;
+std::cout << " #    # #    #   #   ### #       #  #  #      " << std::endl;
+std::cout << " #####   ####    #   ### ###### #    # ###### " << std::endl;
 }
