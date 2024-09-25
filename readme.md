@@ -5,7 +5,7 @@
 Para compilar o programa, execute o seguinte comando na pasta raiz do projeto:
 
 ```sh
-g++ -Wall -Wextra -g3 main.cpp gravar-jogo.cpp excluir-jogo.cpp buscar-jogo.cpp logo.cpp -o output/main.exe
+g++ -Wall -Wextra -g3 main.cpp gravar-jogo.cpp excluir-jogo.cpp buscar-jogo.cpp -o output/main.exe
 ```
 
 ## Execução
