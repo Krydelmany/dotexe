@@ -1,6 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string>
+#include "bibliotecas.h"
 
 // Função para gravar o gênero do jogo em um arquivo
 void gravarGeneroJogo(const std::string& generoJogo) {

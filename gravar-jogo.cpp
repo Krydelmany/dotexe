@@ -1,7 +1,4 @@
 #include "gravar-jogo.h"
-#include <iostream>
-#include <fstream>
-#include <string>
 
 void gravarJogo(int id, const std::string& nomeJogo, const std::string& generoJogo, const std::string& plataforma, const std::string& anoLancamento, const std::string& desenvolvedor) {
     std::ofstream arquivo("jogos.txt", std::ios::app);

@@ -1,8 +1,4 @@
 #include "buscar-jogo.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <algorithm>
 
 // Função para buscar um jogo com base no nome
 void buscarJogoPorNome(const std::string& nomeJogo) {

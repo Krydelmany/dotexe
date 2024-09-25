@@ -1,8 +1,4 @@
 #include "excluir-jogo.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
 
 // Função para excluir um jogo com base no ID
 void excluirJogo(int id) {

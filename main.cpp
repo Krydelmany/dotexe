@@ -1,10 +1,11 @@
-#include <iostream>
-#include <string>
 #include "gravar-jogo.h"
 #include "excluir-jogo.h"
 #include "buscar-jogo.h"
+#include "logo.cpp"
 
 int main() {
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+
     int opcao;
     int id = 1;  // Contador de jogos, você pode carregar isso de um arquivo para persistência.
     std::string nomeJogo, generoJogo, plataforma, anoLancamento, desenvolvedor;
