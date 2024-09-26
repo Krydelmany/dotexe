@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Jogos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #game-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .game-item {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .game-item strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Jogos</h1>
+    <ul id="game-list">
+        <!-- O conteúdo da lista de jogos será importado aqui -->
+        <li>Carregando...</li>
+    </ul>
+
+    <script>
+        async function main() {
+            try {
+                const response = await fetch('lista-jogos.html');
+                const listajogosHtml = await response.text();
+                const gameList = document.getElementById('game-list');
+                gameList.innerHTML = listajogosHtml;
+            } catch (error) {
+                console.error('Erro ao carregar a lista de jogos:', error);
+                const gameList = document.getElementById('game-list');
+                gameList.innerHTML = 'Erro ao carregar a lista de jogos.';
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
