@@ -5,7 +5,7 @@
 
 // Função para gravar o preço do jogo
 void gravarPrecoJogo(float precoJogo) {
-    std::ofstream arquivo("jogos.txt", std::ios::app); // Abre o arquivo em modo de adição
+    std::ofstream arquivo("output/temp/jogos.txt", std::ios::app); // Abre o arquivo em modo de adição
     if (arquivo.is_open()) {
         arquivo << precoJogo << " R$" << std::endl; // Escreve o preço do jogo no arquivo
         arquivo.close(); // Fecha o arquivo
