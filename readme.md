@@ -5,7 +5,7 @@
 Para compilar o programa, execute o seguinte comando na pasta raiz do projeto:
 
 ```sh
-g++ -Wall -Wextra -g3 main.cpp gravar-jogo.cpp excluir-jogo.cpp buscar-jogo.cpp -o output/main.exe
+g++ -Wall -Wextra -finput-charset=UTF-8 -fexec-charset=UTF-8 -g3 -Iinicio -Igravar -Iexcluir -Ibuscar main.cpp inicio/entra-programa.cpp gravar/gravar-jogo.cpp excluir/excluir-jogo.cpp buscar/buscar-jogo.cpp -o output/main.exe
 ```
 
 ## Execução
@@ -14,4 +14,46 @@ Após a compilação, execute o arquivo `main.exe` dentro da pasta `output`:
 
 ```sh
 ./output/main.exe
+```
+
+## Compilação facilitada
+
+Para compilar o programa com o tasks.json aperte Crtl + Shift + b (para fazer isso voce precisa criar um arquivo tasks.json dentro da sua pasta .vscode e colocar esse código abaixo)
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar Programa",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-finput-charset=UTF-8",
+                "-fexec-charset=UTF-8",
+                "-g3",
+                "-Iinicio",
+                "-Igravar",
+                "-Iexcluir",
+                "-Ibuscar",
+                "main.cpp",
+                "inicio/entra-programa.cpp",
+                "gravar/gravar-jogo.cpp",
+                "excluir/excluir-jogo.cpp",
+                "buscar/buscar-jogo.cpp",
+                "-o",
+                "output/main.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compilação do programa com g++"
+        }
+    ]
+}
+
 ```
