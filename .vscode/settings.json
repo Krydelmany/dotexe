@@ -69,6 +69,8 @@
         "sstream": "cpp",
         "thread": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "map": "cpp",
+        "set": "cpp"
     }
 }

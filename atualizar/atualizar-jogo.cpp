@@ -52,7 +52,7 @@ bool atualizarJogo(int id) {
     std::cout << "3. Plataforma" << std::endl;
     std::cout << "4. Ano de Lançamento" << std::endl;
     std::cout << "5. Desenvolvedor" << std::endl;
-    std::cout << "Escolha uma opção (1-5): ";
+    std::cout << "Escolha uma opcao (1-5): ";
 
     int opcao;
     std::cin >> opcao;

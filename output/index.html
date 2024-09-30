@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
     <!--
     NOTA IMPORTANTE SOBRE SEGURANÇA E CARREGAMENTO DE ARQUIVOS LOCAIS:
 
@@ -14,7 +13,8 @@
     2. Gerar um arquivo HTML completo com os dados incorporados usando seu programa C++.
     3. Permitir a execução de scripts locais no seu navegador (não recomendado por questões de segurança).
     -->
-    <meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dotexe</title>
     <style>
@@ -25,6 +25,7 @@
             padding: 0;
             background-color: #f0f2f5;
             color: #333;
+            transition: background-color 0.3s, color 0.3s;
         }
         .container {
             max-width: 800px;
@@ -46,7 +47,7 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s, color 0.3s;
         }
         .game-item:hover {
             transform: translateY(-5px);
@@ -71,9 +72,82 @@
             font-size: 18px;
             color: #7f8c8d;
         }
+        .dark-mode-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .dark-mode-label {
+            margin-right: 10px;
+            color: #333;
+        }
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        body.dark-mode .game-item {
+            background-color: #2c2c2c;
+            color: #f0f0f0;
+        }
+        body.dark-mode h1,
+        body.dark-mode .game-item h2,
+        body.dark-mode .game-info strong {
+            color: #3498db;
+        }
+        body.dark-mode .dark-mode-label {
+            color: #f0f0f0;
+        }
     </style>
 </head>
 <body>
+    <div class="dark-mode-switch">
+        <span class="dark-mode-label">Dark Mode</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
     <div class="container">
         <h1>Lista dos Jogos</h1>
         <div id="loading">Carregando lista de jogos...</div>
@@ -128,6 +202,22 @@
                 console.error('Erro ao carregar a lista de jogos:', error);
                 document.getElementById('loading').textContent = 'Erro ao carregar a lista de jogos. Por favor, tente por outro método.';
             });
+
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        });
+
+        // Check for saved dark mode preference
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
     </script>
 </body>
 </html>

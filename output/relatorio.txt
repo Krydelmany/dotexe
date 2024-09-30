@@ -1,0 +1,100 @@
+Quantidade de Jogos Cadastrados: 10
+
+Jogos Agrupados por Desenvolvedora:
+Desenvolvedora:  343 Industries
+  -  Halo Infinite
+
+Desenvolvedora:  CD Projekt Red
+  -  Cyberpunk 2077
+  -  The Witcher 3
+
+Desenvolvedora:  FromSoftware
+  -  Dark Souls III
+
+Desenvolvedora:  Guerrilla Games
+  -  Horizon Zero Dawn
+
+Desenvolvedora:  Mojang
+  -  Minecraft
+
+Desenvolvedora:  Rockstar Games
+  -  Red Dead Redemption 2
+
+Desenvolvedora:  Sony
+  -  God of War
+  -  God of War II
+  -  The Last of Us
+
+Jogos Agrupados por Genero:
+Genero:  Ação
+  -  God of War
+  -  God of War II
+  -  The Last of Us
+
+Genero:  Ação, Aventura
+  -  Horizon Zero Dawn
+  -  Red Dead Redemption 2
+
+Genero:  Ação, RPG
+  -  Dark Souls III
+
+Genero:  FPS
+  -  Halo Infinite
+
+Genero:  RPG
+  -  The Witcher 3
+
+Genero:  RPG, Ação
+  -  Cyberpunk 2077
+
+Genero:  Sandbox
+  -  Minecraft
+
+Jogos Agrupados por Plataforma:
+Plataforma:  Console, PC
+  -  Halo Infinite
+  -  Red Dead Redemption 2
+
+Plataforma:  PC
+  -  God of War
+  -  God of War II
+
+Plataforma:  PC, Console
+  -  Cyberpunk 2077
+  -  Dark Souls III
+  -  Horizon Zero Dawn
+  -  The Last of Us
+  -  The Witcher 3
+
+Plataforma:  PC, Console, Mobile
+  -  Minecraft
+
+Jogos Agrupados por Ano de Lançamento:
+Ano:  2010
+  -  God of War
+
+Ano:  2011
+  -  God of War II
+  -  Minecraft
+
+Ano:  2015
+  -  The Witcher 3
+
+Ano:  2016
+  -  Dark Souls III
+
+Ano:  2017
+  -  Horizon Zero Dawn
+
+Ano:  2018
+  -  Red Dead Redemption 2
+
+Ano:  2020
+  -  Cyberpunk 2077
+
+Ano:  2021
+  -  Halo Infinite
+
+Ano:  2022
+  -  The Last of Us
+

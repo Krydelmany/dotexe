@@ -11,12 +11,12 @@
  * 
  * @param generoJogo O gênero do jogo a ser gravado no arquivo.
  */
-void gravarJogo(int id, const std::string& nomeJogo, const std::string& generoJogo) {
+void gravarGeneroJogo(const std::string& generoJogo) {
     std::ofstream arquivo("jogos.txt", std::ios::app); // Abre o arquivo em modo de adição
     if (arquivo.is_open()) {
-        arquivo << id << ";nome: " << nomeJogo << ", Genero: " << generoJogo << ";" << std::endl; // Escreve o nome e o gênero do jogo no arquivo
+        arquivo << generoJogo << std::endl; // Escreve o gênero do jogo no arquivo
         arquivo.close(); // Fecha o arquivo
-        std::cout << "Jogo gravado com sucesso!" << std::endl;
+        std::cout << "Genero do jogo gravado com sucesso!" << std::endl;
     } else {
         std::cerr << "Erro ao abrir o arquivo!" << std::endl;
     }

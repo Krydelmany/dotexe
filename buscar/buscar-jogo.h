@@ -6,6 +6,8 @@
 
 void buscarJogoPorNome(const std::string& nome);
 
-void buscarJogoPorID(int id);
+void buscarJogoPorIDLinear(int id);
+
+void buscarJogoPorIDBinario(int id);
 
 #endif
