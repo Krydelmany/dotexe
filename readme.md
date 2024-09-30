@@ -5,7 +5,7 @@
 Para compilar o programa, execute o seguinte comando na pasta raiz do projeto:
 
 ```sh
-g++ -Wall -Wextra -finput-charset=UTF-8 -fexec-charset=UTF-8 -g3 -Iinicio -Igravar -Iexcluir -Ibuscar main.cpp inicio/entra-programa.cpp gravar/gravar-jogo.cpp excluir/excluir-jogo.cpp buscar/buscar-jogo.cpp -o output/main.exe
+g++ -Wall -Wextra -finput-charset=UTF-8 -fexec-charset=UTF-8 -g3 -Iinicio -Igravar -Iexcluir -Ibuscar -Iid_manager -Iatualizar main.cpp inicio/entra-programa.cpp gravar/gravar-jogo.cpp excluir/excluir-jogo.cpp buscar/buscar-jogo.cpp id_manager/id_manager.cpp atualizar/atualizar-jogo.cpp -o output/main.exeinicio/entra-programa.cpp gravar/gravar-jogo.cpp excluir/excluir-jogo.cpp buscar/buscar-jogo.cpp -o output/main.exe
 ```
 
 ## Execução
@@ -35,14 +35,18 @@ Para compilar o programa com o tasks.json aperte Crtl + Shift + b (para fazer is
                 "-fexec-charset=UTF-8",
                 "-g3",
                 "-Iinicio",
+                "-Iatualizar",
                 "-Igravar",
                 "-Iexcluir",
                 "-Ibuscar",
+                "-Iid_manager",
                 "main.cpp",
-                "inicio/entra-programa.cpp",
+                "atualizar/atualizar-jogo.cpp",
                 "gravar/gravar-jogo.cpp",
-                "excluir/excluir-jogo.cpp",
                 "buscar/buscar-jogo.cpp",
+                "excluir/excluir-jogo.cpp",
+                "id_manager/id_manager.cpp",
+                "inicio/entra-programa.cpp",
                 "-o",
                 "output/main.exe"
             ],
@@ -55,5 +59,6 @@ Para compilar o programa com o tasks.json aperte Crtl + Shift + b (para fazer is
         }
     ]
 }
+
 
 ```
