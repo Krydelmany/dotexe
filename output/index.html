@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!--
+    NOTA IMPORTANTE SOBRE SEGURANÇA E CARREGAMENTO DE ARQUIVOS LOCAIS:
+
+    Devido à política de segurança de mesmo origem (Same-Origin Policy) e às restrições 
+    de CORS (Cross-Origin Resource Sharing), quando você abre este arquivo HTML diretamente 
+    no navegador (usando o protocolo file://), o JavaScript não tem permissão para carregar 
+    arquivos locais por motivos de segurança.
+
+    Para contornar isso durante o desenvolvimento, você pode:
+    1. Usar um servidor local (como Live Server no VS Code).
+    2. Gerar um arquivo HTML completo com os dados incorporados usando seu programa C++.
+    3. Permitir a execução de scripts locais no seu navegador (não recomendado por questões de segurança).
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Jogos</title>
+    <title>dotexe</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            background-color: #f4f4f4;
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #2c3e50;
+            margin-bottom: 30px;
         }
         #game-list {
             list-style-type: none;
@@ -22,38 +42,92 @@
         }
         .game-item {
             background-color: #fff;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
-        .game-item strong {
+        .game-item:hover {
+            transform: translateY(-5px);
+        }
+        .game-item h2 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .game-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .game-info p {
+            margin: 5px 0;
+        }
+        .game-info strong {
             color: #2c3e50;
+        }
+        #loading {
+            text-align: center;
+            font-size: 18px;
+            color: #7f8c8d;
         }
     </style>
 </head>
 <body>
-    <h1>Lista de Jogos</h1>
-    <ul id="game-list">
-        <!-- O conteúdo da lista de jogos será importado aqui -->
-        <li>Carregando...</li>
-    </ul>
+    <div class="container">
+        <h1>Lista dos Jogos</h1>
+        <div id="loading">Carregando lista de jogos...</div>
+        <ul id="game-list"></ul>
+    </div>
 
     <script>
-        async function main() {
-            try {
-                const response = await fetch('lista-jogos.html');
-                const listajogosHtml = await response.text();
-                const gameList = document.getElementById('game-list');
-                gameList.innerHTML = listajogosHtml;
-            } catch (error) {
-                console.error('Erro ao carregar a lista de jogos:', error);
-                const gameList = document.getElementById('game-list');
-                gameList.innerHTML = 'Erro ao carregar a lista de jogos.';
-            }
+        function parseGameString(gameString) {
+            const parts = gameString.split(';');
+            const gameObj = {};
+            parts.forEach(part => {
+                const [key, value] = part.split(':').map(item => item.trim());
+                gameObj[key.toLowerCase()] = value;
+            });
+            return gameObj;
         }
 
-        main();
+        function createGameElement(game) {
+            const li = document.createElement('li');
+            li.className = 'game-item';
+            li.innerHTML = `
+                <h2>${game.nome || 'Nome não disponível'}</h2>
+                <div class="game-info">
+                    <p><strong>ID:</strong> ${game.id || 'N/A'}</p>
+                    <p><strong>Gênero:</strong> ${game.genero || 'N/A'}</p>
+                    <p><strong>Plataforma:</strong> ${game.plataforma || 'N/A'}</p>
+                    <p><strong>Ano:</strong> ${game.ano || 'N/A'}</p>
+                    <p><strong>Desenvolvedor:</strong> ${game.desenvolvedor || 'N/A'}</p>
+                </div>
+            `;
+            return li;
+        }
+
+        fetch('jogos.txt')
+            .then(response => response.text())
+            .then(text => {
+                const gameList = document.getElementById('game-list');
+                const games = text.split('\n').filter(game => game.trim());
+                
+                if (games.length === 0) {
+                    document.getElementById('loading').textContent = 'Nenhum jogo encontrado.';
+                } else {
+                    document.getElementById('loading').style.display = 'none';
+                    games.forEach(gameString => {
+                        const game = parseGameString(gameString);
+                        const gameElement = createGameElement(game);
+                        gameList.appendChild(gameElement);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao carregar a lista de jogos:', error);
+                document.getElementById('loading').textContent = 'Erro ao carregar a lista de jogos. Por favor, tente por outro método.';
+            });
     </script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-ID: 1; Nome: God of War; Genero: Ação; Plataforma: PC; Ano: 2010; Desenvolvedor: Sony
 ID: 2; Nome: The Last of Us; Genero: Ação; Plataforma: PC, Console; Ano: 2022; Desenvolvedor: Sony
 ID: 3; Nome: God of War II; Genero: Ação; Plataforma: PC; Ano: 2011; Desenvolvedor: Sony
 ID: 4; Nome: Red Dead Redemption 2; Genero: Ação, Aventura; Plataforma: Console, PC; Ano: 2018; Desenvolvedor: Rockstar Games
