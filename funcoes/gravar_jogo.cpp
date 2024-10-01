@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "gravar_jogo.h"
+#include "../cabecalhos/gravar_jogo.h"
 
 /**
  * @brief Função para gravar um jogo no arquivo.

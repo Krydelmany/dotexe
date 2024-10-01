@@ -71,6 +71,9 @@
         "chrono": "cpp",
         "ratio": "cpp",
         "map": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "numbers": "cpp",
+        "span": "cpp",
+        "variant": "cpp"
     }
 }

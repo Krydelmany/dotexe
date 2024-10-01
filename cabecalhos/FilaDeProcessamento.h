@@ -1,10 +1,7 @@
 #ifndef FILA_DE_PROCESSAMENTO_H
 #define FILA_DE_PROCESSAMENTO_H
 
-#include <queue>
-#include <vector>
-#include <string>
-#include <iostream>
+#include "../main.h"
 
 /**
  * @brief Estrutura para armazenar informações de um jogo.

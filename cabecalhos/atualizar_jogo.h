@@ -1,7 +1,7 @@
 #ifndef ATUALIZAR_JOGO_H
 #define ATUALIZAR_JOGO_H
 
-#include <string>
+#include "../main.h"
 
 bool atualizarJogo(int id);
 

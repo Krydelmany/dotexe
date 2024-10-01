@@ -21,18 +21,15 @@
  * @author Giovani Claro Moraes
  */
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include "id_manager.h"
-#include "gravar_jogo.h"
-#include "excluir_jogo.h"
-#include "buscar_jogo.h"
-#include "entra_programa.h"
-#include "atualizar_jogo.h"
-#include "relatorio_jogo.h"
-#include "FilaDeProcessamento.h"
+#include "main.h"
+#include "cabecalhos/id_manager.h"
+#include "cabecalhos/gravar_jogo.h"
+#include "cabecalhos/excluir_jogo.h"
+#include "cabecalhos/buscar_jogo.h"
+#include "cabecalhos/entra_programa.h"
+#include "cabecalhos/atualizar_jogo.h"
+#include "cabecalhos/relatorio_jogo.h"
+#include "cabecalhos/FilaDeProcessamento.h"
 
 /**
  * @brief Funcao para exibir o menu e obter a opcao do usuario.

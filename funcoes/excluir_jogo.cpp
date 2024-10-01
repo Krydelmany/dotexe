@@ -1,4 +1,4 @@
-#include "excluir_jogo.h"
+#include "../cabecalhos/excluir_jogo.h"
 #include <iostream>
 #include <fstream>
 #include <string>

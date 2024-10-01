@@ -7,8 +7,8 @@
  *
  * @param nomeJogo O nome do jogo que deseja buscar.
  */
-#include "FilaDeProcessamento.h"
-#include "buscar_jogo.h"
+#include "../cabecalhos/FilaDeProcessamento.h"
+#include "../cabecalhos/buscar_jogo.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
