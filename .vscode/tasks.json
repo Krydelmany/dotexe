@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Compilar programa",
+        "type": "shell",
+        "command": "g++",
+        "args": [
+          "-Wall", 
+          "-Wextra",
+          "-finput-charset=UTF-8",
+          "-fexec-charset=UTF-8",
+          "-g3", 
+          "-Icabecalhos", 
+          "main.cpp", 
+          "funcoes/entra_programa.cpp", 
+          "funcoes/gravar_jogo.cpp", 
+          "funcoes/excluir_jogo.cpp", 
+          "funcoes/buscar_jogo.cpp", 
+          "funcoes/id_manager.cpp", 
+          "funcoes/atualizar_jogo.cpp", 
+          "funcoes/FilaDeProcessamento.cpp", 
+          "funcoes/relatorio_jogo.cpp", 
+          "-o", 
+          "output/main.exe"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": ["$gcc"],
+        "detail": "Compilar o projeto usando o g++"
+      }
+    ]
+  }
+  

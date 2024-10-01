@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "(gdb) Launch",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/output/main.exe", // Caminho do executável gerado
+        "args": [], // Você pode adicionar argumentos para o seu programa aqui, se necessário
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": true,
+        "MIMode": "gdb",
+        "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe", // Caminho para o gdb
+        "setupCommands": [
+          {
+            "description": "Habilitar a impressão de valores automaticamente",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ],
+        "preLaunchTask": "Compilar programa", // Relacionado com o tasks.json que você pode criar para compilar
+        "internalConsoleOptions": "neverOpen", // Usar console externo
+        "logging": { "engineLogging": false }
+      }
+    ]
+  }
+  
