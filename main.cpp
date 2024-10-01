@@ -25,13 +25,13 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include "id-manager.h"
-#include "gravar-jogo.h"
-#include "excluir-jogo.h"
-#include "buscar-jogo.h"
-#include "entra-programa.h"
-#include "atualizar-jogo.h"
-#include "relatorio-jogo.h"
+#include "id_manager.h"
+#include "gravar_jogo.h"
+#include "excluir_jogo.h"
+#include "buscar_jogo.h"
+#include "entra_programa.h"
+#include "atualizar_jogo.h"
+#include "relatorio_jogo.h"
 #include "FilaDeProcessamento.h"
 
 /**
