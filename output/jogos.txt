@@ -8,4 +8,4 @@ ID: 7; Nome: Halo Infinite; Genero: FPS; Plataforma: Console, PC; Ano: 2021; Des
 ID: 8; Nome: Cyberpunk 2077; Genero: RPG, Ação; Plataforma: PC, Console; Ano: 2020; Desenvolvedor: CD Projekt Red
 ID: 9; Nome: Dark Souls III; Genero: Acao, RPG; Plataforma: PC, Console; Ano: 2016; Desenvolvedor: FromSoftware
 ID: 10; Nome: Horizon Zero Dawn; Genero: Acao, Aventura; Plataforma: PC, Console; Ano: 2017; Desenvolvedor: Guerrilla Games
-ID: 20; Nome: 1; Genero: 1; Plataforma: 1; Ano: 1; Desenvolvedor: 1
+ID: 21; Nome: Risk of Rain 2; Genero: RogueLike; Plataforma: Todas; Ano: 2020; Desenvolvedor: Hopoo Games
