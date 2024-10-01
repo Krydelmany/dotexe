@@ -38,6 +38,7 @@
  */
 int exibirMenu()
 {
+    entraPrograma();
     std::cout << "\n=================================" << std::endl;
     std::cout << "       GERENCIADOR DE JOGOS       " << std::endl;
     std::cout << "=================================" << std::endl;
@@ -96,6 +97,8 @@ int main()
 
     while (true)
     {
+        system("cls");
+
         opcao = exibirMenu();
 
         switch (opcao)
@@ -243,6 +246,7 @@ int main()
             std::cerr << "Opcao invalida. Por favor, tente novamente.\n"
                       << std::endl;
         }
+        system("pause");
     }
 
     return 0;
