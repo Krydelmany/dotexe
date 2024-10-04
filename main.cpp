@@ -68,9 +68,8 @@ int exibirSubmenuBusca()
     std::cout << "1. Buscar por Nome" << std::endl;
     std::cout << "2. Buscar por ID (Busca Linear)" << std::endl;
     std::cout << "3. Buscar por ID (Busca Binaria)" << std::endl;
-
-    std::cout << "4. Voltar ao Menu Principal" << std::endl;
-    std::cout << "Escolha uma opcao (1-3): ";
+    std::cout << "4. Sair/Voltar ao Menu Principal" << std::endl;
+    std::cout << "Escolha uma opcao (1-4): ";
     int opcao;
     std::cin >> opcao;
     std::cin.ignore(); // Limpar buffer
@@ -216,7 +215,8 @@ int main()
         {
             // Abrir lista de jogos no navegador
             char resposta;
-            std::cout << "\nDeseja abrir a lista de jogos no navegador? (S/s para Sim, N/n para Nao): ";
+            std::cout << "\nDeseja abrir a lista de jogos no navegador? (S/s para Sim, N/n para Nao): \n";
+            std::cout << ">> Está opção só funcionara caso a porta [5500] esteja aberta << \n";
             std::cin >> resposta;
             std::cin.ignore(); // Limpar buffer
 
