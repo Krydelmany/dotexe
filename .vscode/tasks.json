@@ -20,7 +20,8 @@
           "funcoes/id_manager.cpp", 
           "funcoes/atualizar_jogo.cpp", 
           "funcoes/FilaDeProcessamento.cpp", 
-          "funcoes/relatorio_jogo.cpp", 
+          "funcoes/relatorio_jogo.cpp",
+          "funcoes/buscas_variadas.cpp", 
           "-o", 
           "output/main.exe"
         ],

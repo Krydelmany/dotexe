@@ -9,6 +9,9 @@
 #include <queue>
 #include <sstream>
 
+int exibirMenu();
+int exibirSubmenuBusca();
+
 /*
 #include "cabecalhos/atualizar_jogo.h"
 #include "cabecalhos/buscar_jogo.h"

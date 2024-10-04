@@ -30,6 +30,7 @@
 #include "cabecalhos/atualizar_jogo.h"
 #include "cabecalhos/relatorio_jogo.h"
 #include "cabecalhos/FilaDeProcessamento.h"
+#include "cabecalhos/buscas_variadas.h"
 
 /**
  * @brief Funcao para exibir o menu e obter a opcao do usuario.

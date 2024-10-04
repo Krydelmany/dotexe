@@ -29,35 +29,40 @@ std::vector<Jogo> carregarJogosOrdenados()
         std::cerr << "Erro ao abrir o arquivo de jogos." << std::endl;
         return jogos;
     }
+
     while (std::getline(arquivo, linha))
     {
-        if (linha.find("ID: ") == 0)
-        {
-            std::stringstream ss(linha);
-            std::string temp;
-            ss >> temp >> jogo.id; // Extrai o ID
+        std::stringstream ss(linha);
+        std::string temp;
 
-            std::getline(arquivo, linha);
-            jogo.nome = linha;
-            std::getline(arquivo, linha);
-            jogo.genero = linha;
-            std::getline(arquivo, linha);
-            jogo.plataforma = linha;
-            std::getline(arquivo, linha);
-            jogo.anoLancamento = linha;
-            std::getline(arquivo, linha);
-            jogo.desenvolvedor = linha;
+        // Extrai os campos da linha formatada
+        std::getline(ss, temp, ';'); // Extrai o campo "ID"
+        jogo.id = std::stoi(temp.substr(temp.find(":") + 1)); // Converte para inteiro a parte do ID
 
-            jogos.push_back(jogo);
-        }
+        std::getline(ss, temp, ';'); // Nome
+        jogo.nome = temp.substr(temp.find(":") + 2); // Extrai a parte depois de "Nome:"
+
+        std::getline(ss, temp, ';'); // Genero
+        jogo.genero = temp.substr(temp.find(":") + 2); 
+
+        std::getline(ss, temp, ';'); // Plataforma
+        jogo.plataforma = temp.substr(temp.find(":") + 2); 
+
+        std::getline(ss, temp, ';'); // Ano de Lançamento
+        jogo.anoLancamento = temp.substr(temp.find(":") + 2); 
+
+        std::getline(ss, temp, ';'); // Desenvolvedor
+        jogo.desenvolvedor = temp.substr(temp.find(":") + 2); 
+
+        jogos.push_back(jogo);
     }
+
     // Ordena os jogos pelo ID
     std::sort(jogos.begin(), jogos.end(), [](const Jogo &a, const Jogo &b)
               { return a.id < b.id; });
 
     return jogos;
 }
-
 /**
  * @brief Função para buscar um jogo pelo nome.
  *
@@ -140,7 +145,7 @@ void buscarJogoPorIDBinario(int id)
         // Verificar se o jogo do meio é o que estamos procurando
         if (jogos[meio].id == id)
         {
-            // Jogo encontrado, exibir os detalhes
+            // Jogo encontrado, exibir os detalhes de forma formatada
             std::cout << "\nJogo encontrado: " << std::endl;
             std::cout << "ID: " << jogos[meio].id << std::endl;
             std::cout << "Nome: " << jogos[meio].nome << std::endl;
@@ -149,7 +154,7 @@ void buscarJogoPorIDBinario(int id)
             std::cout << "Ano de Lançamento: " << jogos[meio].anoLancamento << std::endl;
             std::cout << "Desenvolvedor: " << jogos[meio].desenvolvedor << std::endl;
             encontrado = true;
-            break;
+            break; // Saímos do loop após encontrar o jogo
         }
 
         // Se o ID do meio for menor que o ID procurado, mover para a direita
@@ -175,6 +180,7 @@ void buscarJogoPorIDBinario(int id)
     std::chrono::duration<double> duration = end - start;
     std::cout << "Tempo de execucao da busca binaria: " << duration.count() << " segundos." << std::endl;
 }
+
 
 /**
  * @brief Função para buscar um jogo pelo ID.
