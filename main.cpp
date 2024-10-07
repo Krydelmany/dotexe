@@ -21,18 +21,16 @@
  * @author Giovani Claro Moraes
  */
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include "id-manager.h"
-#include "gravar-jogo.h"
-#include "excluir-jogo.h"
-#include "buscar-jogo.h"
-#include "entra-programa.h"
-#include "atualizar-jogo.h"
-#include "relatorio-jogo.h"
-#include "FilaDeProcessamento.h"
+#include "main.h"
+#include "cabecalhos/id_manager.h"
+#include "cabecalhos/gravar_jogo.h"
+#include "cabecalhos/excluir_jogo.h"
+#include "cabecalhos/buscar_jogo.h"
+#include "cabecalhos/entra_programa.h"
+#include "cabecalhos/atualizar_jogo.h"
+#include "cabecalhos/relatorio_jogo.h"
+#include "cabecalhos/FilaDeProcessamento.h"
+#include "cabecalhos/buscas_variadas.h"
 
 /**
  * @brief Funcao para exibir o menu e obter a opcao do usuario.
@@ -41,6 +39,7 @@
  */
 int exibirMenu()
 {
+    entraPrograma();
     std::cout << "\n=================================" << std::endl;
     std::cout << "       GERENCIADOR DE JOGOS       " << std::endl;
     std::cout << "=================================" << std::endl;
@@ -69,9 +68,8 @@ int exibirSubmenuBusca()
     std::cout << "1. Buscar por Nome" << std::endl;
     std::cout << "2. Buscar por ID (Busca Linear)" << std::endl;
     std::cout << "3. Buscar por ID (Busca Binaria)" << std::endl;
-
-    std::cout << "4. Voltar ao Menu Principal" << std::endl;
-    std::cout << "Escolha uma opcao (1-3): ";
+    std::cout << "4. Sair/Voltar ao Menu Principal" << std::endl;
+    std::cout << "Escolha uma opcao (1-4): ";
     int opcao;
     std::cin >> opcao;
     std::cin.ignore(); // Limpar buffer
@@ -99,6 +97,8 @@ int main()
 
     while (true)
     {
+        system("cls");
+
         opcao = exibirMenu();
 
         switch (opcao)
@@ -215,7 +215,8 @@ int main()
         {
             // Abrir lista de jogos no navegador
             char resposta;
-            std::cout << "\nDeseja abrir a lista de jogos no navegador? (S/s para Sim, N/n para Nao): ";
+            std::cout << "\nDeseja abrir a lista de jogos no navegador? (S/s para Sim, N/n para Nao): \n";
+            std::cout << ">> Está opção só funcionara caso a porta [5500] esteja aberta << \n";
             std::cin >> resposta;
             std::cin.ignore(); // Limpar buffer
 
@@ -246,6 +247,7 @@ int main()
             std::cerr << "Opcao invalida. Por favor, tente novamente.\n"
                       << std::endl;
         }
+        system("pause");
     }
 
     return 0;

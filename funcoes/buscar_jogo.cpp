@@ -1,14 +1,14 @@
 /**
  * @brief Função para buscar um jogo com base no nome.
- * 
+ *
  * Esta função abre um arquivo contendo uma lista de jogos e procura por um jogo cujo nome
  * corresponda (case-insensitive) ao nome fornecido. Se o jogo for encontrado, ele será exibido
  * no console. Caso contrário, uma mensagem de erro será exibida.
- * 
+ *
  * @param nomeJogo O nome do jogo que deseja buscar.
  */
-#include "../fila/FilaDeProcessamento.h"
-#include "buscar-jogo.h"
+#include "../cabecalhos/FilaDeProcessamento.h"
+#include "../cabecalhos/buscar_jogo.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -17,60 +17,76 @@
 #include <chrono>
 
 // Função para carregar jogos do arquivo e ordená-los por ID
-std::vector<Jogo> carregarJogosOrdenados() {
+std::vector<Jogo> carregarJogosOrdenados()
+{
     std::ifstream arquivo("output/jogos.txt");
     std::vector<Jogo> jogos;
     std::string linha;
     Jogo jogo;
 
-    if (!arquivo.is_open()) {
+    if (!arquivo.is_open())
+    {
         std::cerr << "Erro ao abrir o arquivo de jogos." << std::endl;
         return jogos;
     }
-        while (std::getline(arquivo, linha)) {
-        if (linha.find("ID: ") == 0) {
-            std::stringstream ss(linha);
-            std::string temp;
-            ss >> temp >> jogo.id; // Extrai o ID
 
-            std::getline(arquivo, linha); jogo.nome = linha;
-            std::getline(arquivo, linha); jogo.genero = linha;
-            std::getline(arquivo, linha); jogo.plataforma = linha;
-            std::getline(arquivo, linha); jogo.anoLancamento = linha;
-            std::getline(arquivo, linha); jogo.desenvolvedor = linha;
+    while (std::getline(arquivo, linha))
+    {
+        std::stringstream ss(linha);
+        std::string temp;
 
-            jogos.push_back(jogo);
-        }
+        // Extrai os campos da linha formatada
+        std::getline(ss, temp, ';'); // Extrai o campo "ID"
+        jogo.id = std::stoi(temp.substr(temp.find(":") + 1)); // Converte para inteiro a parte do ID
+
+        std::getline(ss, temp, ';'); // Nome
+        jogo.nome = temp.substr(temp.find(":") + 2); // Extrai a parte depois de "Nome:"
+
+        std::getline(ss, temp, ';'); // Genero
+        jogo.genero = temp.substr(temp.find(":") + 2); 
+
+        std::getline(ss, temp, ';'); // Plataforma
+        jogo.plataforma = temp.substr(temp.find(":") + 2); 
+
+        std::getline(ss, temp, ';'); // Ano de Lançamento
+        jogo.anoLancamento = temp.substr(temp.find(":") + 2); 
+
+        std::getline(ss, temp, ';'); // Desenvolvedor
+        jogo.desenvolvedor = temp.substr(temp.find(":") + 2); 
+
+        jogos.push_back(jogo);
     }
-       // Ordena os jogos pelo ID
-    std::sort(jogos.begin(), jogos.end(), [](const Jogo& a, const Jogo& b) {
-        return a.id < b.id;
-    });
+
+    // Ordena os jogos pelo ID
+    std::sort(jogos.begin(), jogos.end(), [](const Jogo &a, const Jogo &b)
+              { return a.id < b.id; });
 
     return jogos;
 }
-
 /**
  * @brief Função para buscar um jogo pelo nome.
- * 
+ *
  * Esta função realiza uma busca linear no arquivo de jogos para encontrar
  * jogos que contenham o nome especificado. A busca linear percorre todas as linhas
  * do arquivo e verifica se o nome do jogo está presente em cada linha.
- * 
+ *
  * @param nome O nome do jogo que deseja buscar.
  */
-void buscarJogoPorNome(const std::string& nomeJogo) {
+void buscarJogoPorNome(const std::string &nomeJogo)
+{
     std::ifstream arquivo("output/jogos.txt"); // Arquivo com a lista de jogos
     std::string linha;
     bool jogoEncontrado = false;
 
-    if (!arquivo.is_open()) {
+    if (!arquivo.is_open())
+    {
         std::cerr << "Erro ao abrir o arquivo!" << std::endl;
         return;
     }
 
     // Lê o arquivo linha por linha
-    while (std::getline(arquivo, linha)) {
+    while (std::getline(arquivo, linha))
+    {
         // Converte para letras minúsculas para garantir uma busca case-insensitive
         std::string linhaLower = linha;
         std::string nomeJogoLower = nomeJogo;
@@ -79,13 +95,15 @@ void buscarJogoPorNome(const std::string& nomeJogo) {
         std::transform(nomeJogoLower.begin(), nomeJogoLower.end(), nomeJogoLower.begin(), ::tolower);
 
         // Verifica se o nome do jogo está contido na linha
-        if (linhaLower.find(nomeJogoLower) != std::string::npos) {
+        if (linhaLower.find(nomeJogoLower) != std::string::npos)
+        {
             std::cout << "Jogo encontrado: " << linha << std::endl;
             jogoEncontrado = true;
         }
     }
 
-    if (!jogoEncontrado) {
+    if (!jogoEncontrado)
+    {
         std::cerr << "Jogo com nome '" << nomeJogo << "' nao encontrado!" << std::endl;
     }
 
@@ -94,13 +112,14 @@ void buscarJogoPorNome(const std::string& nomeJogo) {
 
 /**
  * @brief Função para buscar um jogo pelo ID utilizando busca binária.
- * 
+ *
  * Esta função carrega os jogos de um arquivo, os ordena por ID e realiza uma
  * busca binária para encontrar o jogo correspondente ao ID fornecido.
- * 
+ *
  * @param id O ID do jogo que deseja buscar.
  */
-void buscarJogoPorIDBinario(int id) {
+void buscarJogoPorIDBinario(int id)
+{
     // Medir o tempo de execução
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -108,7 +127,8 @@ void buscarJogoPorIDBinario(int id) {
     std::vector<Jogo> jogos = carregarJogosOrdenados();
 
     // Verificar se há jogos disponíveis
-    if (jogos.empty()) {
+    if (jogos.empty())
+    {
         std::cerr << "Nenhum jogo encontrado no arquivo." << std::endl;
         return;
     }
@@ -118,12 +138,14 @@ void buscarJogoPorIDBinario(int id) {
     bool encontrado = false;
 
     // Loop de busca binária
-    while (esquerda <= direita) {
+    while (esquerda <= direita)
+    {
         int meio = esquerda + (direita - esquerda) / 2;
 
         // Verificar se o jogo do meio é o que estamos procurando
-        if (jogos[meio].id == id) {
-            // Jogo encontrado, exibir os detalhes
+        if (jogos[meio].id == id)
+        {
+            // Jogo encontrado, exibir os detalhes de forma formatada
             std::cout << "\nJogo encontrado: " << std::endl;
             std::cout << "ID: " << jogos[meio].id << std::endl;
             std::cout << "Nome: " << jogos[meio].nome << std::endl;
@@ -132,20 +154,24 @@ void buscarJogoPorIDBinario(int id) {
             std::cout << "Ano de Lançamento: " << jogos[meio].anoLancamento << std::endl;
             std::cout << "Desenvolvedor: " << jogos[meio].desenvolvedor << std::endl;
             encontrado = true;
-            break;
+            break; // Saímos do loop após encontrar o jogo
         }
 
         // Se o ID do meio for menor que o ID procurado, mover para a direita
-        if (jogos[meio].id < id) {
+        if (jogos[meio].id < id)
+        {
             esquerda = meio + 1;
-        } else {
+        }
+        else
+        {
             // Se o ID do meio for maior, mover para a esquerda
             direita = meio - 1;
         }
     }
 
     // Se o jogo não foi encontrado
-    if (!encontrado) {
+    if (!encontrado)
+    {
         std::cout << "Jogo com o ID '" << id << "' nao encontrado." << std::endl;
     }
 
@@ -156,21 +182,22 @@ void buscarJogoPorIDBinario(int id) {
 }
 
 
-
 /**
  * @brief Função para buscar um jogo pelo ID.
- * 
+ *
  * Esta função realiza uma busca linear no arquivo de jogos para encontrar
  * o jogo com o ID especificado. A busca linear percorre todas as linhas
  * do arquivo até encontrar o ID desejado ou até chegar ao final do arquivo.
- * 
+ *
  * @param id O ID do jogo que deseja buscar.
  */
-void buscarJogoPorIDLinear(int id) {
+void buscarJogoPorIDLinear(int id)
+{
     auto start = std::chrono::high_resolution_clock::now();
 
     std::ifstream arquivo("output/jogos.txt");
-    if (!arquivo.is_open()) {
+    if (!arquivo.is_open())
+    {
         std::cerr << "Erro ao abrir o arquivo de jogos." << std::endl;
         return;
     }
@@ -179,15 +206,19 @@ void buscarJogoPorIDLinear(int id) {
     bool encontrado = false;
     std::string idStr = "ID: " + std::to_string(id);
 
-    while (std::getline(arquivo, linha)) {
+    while (std::getline(arquivo, linha))
+    {
         // Verifica se a linha começa exatamente com o ID procurado
-        if (linha.find(idStr) == 0) {
+        if (linha.find(idStr) == 0)
+        {
             std::cout << "\nJogo encontrado: " << std::endl;
             std::cout << linha << std::endl;
 
             // Exibir as próximas linhas (informações do jogo) até encontrar uma linha que comece com "ID: " ou o final do arquivo
-            while (std::getline(arquivo, linha)) {
-                if (linha.find("ID: ") == 0) {
+            while (std::getline(arquivo, linha))
+            {
+                if (linha.find("ID: ") == 0)
+                {
                     break;
                 }
                 std::cout << linha << std::endl;
@@ -198,7 +229,8 @@ void buscarJogoPorIDLinear(int id) {
         }
     }
 
-    if (!encontrado) {
+    if (!encontrado)
+    {
         std::cout << "Jogo com o ID '" << id << "' nao encontrado." << std::endl;
     }
 

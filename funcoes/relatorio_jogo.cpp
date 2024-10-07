@@ -7,7 +7,8 @@
 #include <set>
 
 // Estrutura para armazenar os dados do jogo
-struct Jogo {
+struct Jogo
+{
     int id;
     std::string nome;
     std::string genero;
@@ -18,23 +19,26 @@ struct Jogo {
 
 /**
  * @brief Carrega os jogos do arquivo para um vetor.
- * 
+ *
  * Esta função lê os dados dos jogos a partir de um arquivo de texto e os armazena em um vetor.
  * Cada linha do arquivo deve conter os dados de um jogo no formato:
  * "ID: <id>; Nome: <nome>; Genero: <genero>; Plataforma: <plataforma>; Ano: <ano>; Desenvolvedor: <desenvolvedor>;"
- * 
+ *
  * @return Um vetor contendo os jogos carregados do arquivo.
  */
-std::vector<Jogo> carregarJogos() {
+std::vector<Jogo> carregarJogos()
+{
     std::vector<Jogo> jogos;
     std::ifstream arquivo("output/jogos.txt");
-    if (!arquivo.is_open()) {
+    if (!arquivo.is_open())
+    {
         std::cerr << "Erro ao abrir o arquivo de jogos." << std::endl;
         return jogos;
     }
 
     std::string linha;
-    while (std::getline(arquivo, linha)) {
+    while (std::getline(arquivo, linha))
+    {
         Jogo jogo;
         std::stringstream ss(linha);
         std::string idStr;
@@ -45,14 +49,18 @@ std::vector<Jogo> carregarJogos() {
             !std::getline(ss, jogo.genero, ':') || !std::getline(ss, jogo.genero, ';') ||
             !std::getline(ss, jogo.plataforma, ':') || !std::getline(ss, jogo.plataforma, ';') ||
             !std::getline(ss, jogo.anoLancamento, ':') || !std::getline(ss, jogo.anoLancamento, ';') ||
-            !std::getline(ss, jogo.desenvolvedor, ':') || !std::getline(ss, jogo.desenvolvedor, ';')) {
+            !std::getline(ss, jogo.desenvolvedor, ':') || !std::getline(ss, jogo.desenvolvedor, ';'))
+        {
             std::cerr << "Erro ao ler os dados do jogo: " << linha << std::endl;
             continue;
         }
 
-        try {
+        try
+        {
             jogo.id = std::stoi(idStr);
-        } catch (const std::invalid_argument& e) {
+        }
+        catch (const std::invalid_argument &e)
+        {
             std::cerr << "Erro de conversao ao ler os dados do jogo: " << linha << std::endl;
             continue;
         }
@@ -66,14 +74,16 @@ std::vector<Jogo> carregarJogos() {
 
 /**
  * @brief Gera um relatório de todos os jogos.
- * 
+ *
  * Esta função carrega os jogos a partir do arquivo, agrupa-os por desenvolvedora, gênero,
  * plataforma e ano de lançamento, e escreve essas informações em um arquivo de relatório.
  */
-void gerarRelatorio() {
+void gerarRelatorio()
+{
     std::vector<Jogo> jogos = carregarJogos();
     std::ofstream relatorio("output/relatorio.txt");
-    if (!relatorio.is_open()) {
+    if (!relatorio.is_open())
+    {
         std::cerr << "Erro ao abrir o arquivo de relatorio." << std::endl;
         return;
     }
@@ -83,13 +93,16 @@ void gerarRelatorio() {
 
     // Jogos agrupados por desenvolvedora
     std::map<std::string, std::set<std::string>> jogosPorDesenvolvedora;
-    for (const auto& jogo : jogos) {
+    for (const auto &jogo : jogos)
+    {
         jogosPorDesenvolvedora[jogo.desenvolvedor].insert(jogo.nome);
     }
     relatorio << "Jogos Agrupados por Desenvolvedora:\n";
-    for (const auto& [desenvolvedor, jogos] : jogosPorDesenvolvedora) {
+    for (const auto &[desenvolvedor, jogos] : jogosPorDesenvolvedora)
+    {
         relatorio << "Desenvolvedora: " << desenvolvedor << "\n";
-        for (const auto& nome : jogos) {
+        for (const auto &nome : jogos)
+        {
             relatorio << "  - " << nome << "\n";
         }
         relatorio << "\n";
@@ -97,13 +110,16 @@ void gerarRelatorio() {
 
     // Jogos agrupados por gênero
     std::map<std::string, std::set<std::string>> jogosPorGenero;
-    for (const auto& jogo : jogos) {
+    for (const auto &jogo : jogos)
+    {
         jogosPorGenero[jogo.genero].insert(jogo.nome);
     }
     relatorio << "Jogos Agrupados por Genero:\n";
-    for (const auto& [genero, jogos] : jogosPorGenero) {
+    for (const auto &[genero, jogos] : jogosPorGenero)
+    {
         relatorio << "Genero: " << genero << "\n";
-        for (const auto& nome : jogos) {
+        for (const auto &nome : jogos)
+        {
             relatorio << "  - " << nome << "\n";
         }
         relatorio << "\n";
@@ -111,13 +127,16 @@ void gerarRelatorio() {
 
     // Jogos agrupados por plataforma
     std::map<std::string, std::set<std::string>> jogosPorPlataforma;
-    for (const auto& jogo : jogos) {
+    for (const auto &jogo : jogos)
+    {
         jogosPorPlataforma[jogo.plataforma].insert(jogo.nome);
     }
     relatorio << "Jogos Agrupados por Plataforma:\n";
-    for (const auto& [plataforma, jogos] : jogosPorPlataforma) {
+    for (const auto &[plataforma, jogos] : jogosPorPlataforma)
+    {
         relatorio << "Plataforma: " << plataforma << "\n";
-        for (const auto& nome : jogos) {
+        for (const auto &nome : jogos)
+        {
             relatorio << "  - " << nome << "\n";
         }
         relatorio << "\n";
@@ -125,13 +144,16 @@ void gerarRelatorio() {
 
     // Jogos agrupados por ano de lançamento
     std::map<std::string, std::set<std::string>> jogosPorAno;
-    for (const auto& jogo : jogos) {
+    for (const auto &jogo : jogos)
+    {
         jogosPorAno[jogo.anoLancamento].insert(jogo.nome);
     }
     relatorio << "Jogos Agrupados por Ano de Lançamento:\n";
-    for (const auto& [ano, jogos] : jogosPorAno) {
+    for (const auto &[ano, jogos] : jogosPorAno)
+    {
         relatorio << "Ano: " << ano << "\n";
-        for (const auto& nome : jogos) {
+        for (const auto &nome : jogos)
+        {
             relatorio << "  - " << nome << "\n";
         }
         relatorio << "\n";

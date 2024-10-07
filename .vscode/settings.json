@@ -71,6 +71,13 @@
         "chrono": "cpp",
         "ratio": "cpp",
         "map": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "numbers": "cpp",
+        "span": "cpp",
+        "variant": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp"
     }
 }

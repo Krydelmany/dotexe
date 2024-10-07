@@ -1,15 +1,13 @@
 #ifndef FILA_DE_PROCESSAMENTO_H
 #define FILA_DE_PROCESSAMENTO_H
 
-#include <queue>
-#include <vector>
-#include <string>
-#include <iostream>
+#include "../main.h"
 
 /**
  * @brief Estrutura para armazenar informações de um jogo.
  */
-struct Jogo { // Definição da estrutura Jogo
+struct Jogo
+{ // Definição da estrutura Jogo
     int id;
     std::string nome;
     std::string genero;
@@ -18,10 +16,11 @@ struct Jogo { // Definição da estrutura Jogo
     std::string desenvolvedor;
 };
 
-class FilaDeProcessamento {
+class FilaDeProcessamento
+{
 public:
     // Adiciona um jogo à fila
-    void adicionarJogo(const Jogo& jogo);
+    void adicionarJogo(const Jogo &jogo);
 
     // Remove e retorna o jogo na frente da fila
     Jogo removerJogo();

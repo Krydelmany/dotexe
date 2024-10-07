@@ -2,7 +2,7 @@
 #ifndef BUSCAR_JOGO_H
 #define BUSCAR_JOGO_H
 
-#include <string>
+#include "../main.h"
 
 void buscarJogoPorNome(const std::string& nome);
 
