@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Jogos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        .quantity {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .group-title {
+            font-weight: bold;
+            color: #3498db;
+        }
+        .dark-mode-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .dark-mode-label {
+            margin-right: 10px;
+            color: #333;
+        }
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode .group-title {
+            color: #3498db;
+        }
+        body.dark-mode .dark-mode-label {
+            color: #f0f0f0;
+        }
+        body.dark-mode .back-link {
+            background-color: #2980b9;
+        }
+        body.dark-mode .back-link:hover {
+            background-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="dark-mode-switch">
+        <span class="dark-mode-label">Dark Mode</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <div class="container">
+        <h1>Relatório de Jogos</h1>
+        <div id="relatorio"></div>
+        <a href="index.html" class="back-link">Voltar para a Lista de Jogos</a>
+    </div>
+
+    <script>
+        function formatarRelatorio(texto) {
+            const linhas = texto.split('\n');
+            let html = '';
+            let emLista = false;
+
+            linhas.forEach(linha => {
+                if (linha.startsWith('Quantidade de Jogos Cadastrados:')) {
+                    html += `<div class="quantity">${linha}</div>`;
+                } else if (linha.startsWith('Jogos Agrupados por')) {
+                    if (emLista) html += '</ul>';
+                    html += `<h2>${linha}</h2>`;
+                    emLista = false;
+                } else if (linha.trim().startsWith('-')) {
+                    if (!emLista) {
+                        html += '<ul>';
+                        emLista = true;
+                    }
+                    html += `<li>${linha.trim().substring(1).trim()}</li>`;
+                } else if (linha.trim().startsWith('Genero:') || linha.trim().startsWith('Plataforma:') || linha.trim().startsWith('Ano:') || linha.trim().startsWith('Desenvolvedora:')) {
+                    if (emLista) html += '</ul>';
+                    html += `<p class="group-title">${linha.trim()}</p>`;
+                    emLista = false;
+                }
+            });
+
+            if (emLista) html += '</ul>';
+            return html;
+        }
+
+        fetch('relatorio.txt')
+            .then(response => response.text())
+            .then(text => {
+                const relatorioElement = document.getElementById('relatorio');
+                relatorioElement.innerHTML = formatarRelatorio(text);
+            })
+            .catch(error => {
+                console.error('Erro ao carregar o relatório:', error);
+                document.getElementById('relatorio').textContent = 'Erro ao carregar o relatório. Por favor, tente novamente mais tarde.';
+            });
+
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        });
+
+        // Check for saved dark mode preference
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+    </script>
+</body>
+</html>

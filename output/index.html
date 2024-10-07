@@ -138,9 +138,30 @@
         body.dark-mode .dark-mode-label {
             color: #f0f0f0;
         }
+        .report-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .report-link:hover {
+            background-color: #2980b9;
+        }
+        body.dark-mode .report-link {
+            background-color: #2980b9;
+        }
+        body.dark-mode .report-link:hover {
+            background-color: #3498db;
+        }
     </style>
 </head>
 <body>
+        <a href="relatorio.html" class="report-link">Ver Relatório</a>
     <div class="dark-mode-switch">
         <span class="dark-mode-label">Dark Mode</span>
         <label class="switch">
