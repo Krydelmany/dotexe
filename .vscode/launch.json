@@ -5,7 +5,7 @@
         "name": "(gdb) Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/output/main.exe", // Caminho do executável gerado
+        "program": "${workspaceFolder}/dot_exe.exe", // Caminho do executável gerado
         "args": [], // Você pode adicionar argumentos para o seu programa aqui, se necessário
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
