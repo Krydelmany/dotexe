@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "Compilar programa",
+        "label": "Compilar/Buildar",
         "type": "shell",
         "command": "g++",
         "args": [
@@ -30,7 +30,7 @@
           "isDefault": true
         },
         "problemMatcher": ["$gcc"],
-        "detail": "Compilar o projeto usando o g++"
+        "detail": "Compilar/Buildar o programa utilizando do G++"
       }
     ]
   }

@@ -2,17 +2,18 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "(gdb) Launch",
+        "name": "(gdb) Iniciar",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/dot_exe.exe", // Caminho do executável gerado
-        "args": [], // Você pode adicionar argumentos para o seu programa aqui, se necessário
+        "program": "${workspaceFolder}/dot_exe.exe",
+        "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
         "environment": [],
         "externalConsole": true,
         "MIMode": "gdb",
-        "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe", // Caminho para o gdb
+        "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe", // Caminho para o GDB do compilador atual instalado,
+        //              caso esteja utilizando um compilador diferente do "msys64" você tera que mudar a pasta.
         "setupCommands": [
           {
             "description": "Habilitar a impressão de valores automaticamente",
@@ -20,7 +21,7 @@
             "ignoreFailures": true
           }
         ],
-        "preLaunchTask": "Compilar programa", // Relacionado com o tasks.json que você pode criar para compilar
+        "preLaunchTask": "Compilar/Buildar", // Relacionado com o tasks.json que você pode criar para compilar
         "internalConsoleOptions": "neverOpen", // Usar console externo
         "logging": { "engineLogging": false }
       }
